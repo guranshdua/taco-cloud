@@ -68,6 +68,7 @@ public class DesignTacoController {
     {
         if(errors.hasErrors())
         {
+            log.warn(errors.toString());
             return "design";
         }
         tacoOrder.addTaco(taco);

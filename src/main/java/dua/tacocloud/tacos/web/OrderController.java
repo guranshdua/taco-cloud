@@ -27,6 +27,7 @@ public class OrderController {
     {
         if(errors.hasErrors())
         {
+            log.warn(errors.toString());
             return "orderForm";
         }
         log.info("Order submitted : {}",order);
