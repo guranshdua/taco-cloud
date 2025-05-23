@@ -1,8 +1,10 @@
 package dua.tacocloud.tacos.web;
 
 import dua.tacocloud.tacos.TacoOrder;
+import dua.tacocloud.tacos.data.OrderRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,12 @@ public class OrderController {
     {
         return "orderForm";
     }
+    private OrderRepository orderRepo;
+    @Autowired
+    public OrderController(OrderRepository orderRepo)
+    {
+        this.orderRepo=orderRepo;
+    }
 
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus sessionStatus)
@@ -30,6 +38,7 @@ public class OrderController {
             log.warn(errors.toString());
             return "orderForm";
         }
+        orderRepo.save(order);
         log.info("Order submitted : {}",order);
         sessionStatus.setComplete();
 
