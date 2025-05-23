@@ -23,7 +23,7 @@ public class OrderController {
     {
         return "orderForm";
     }
-    private OrderRepository orderRepo;
+    private final OrderRepository orderRepo;
     @Autowired
     public OrderController(OrderRepository orderRepo)
     {

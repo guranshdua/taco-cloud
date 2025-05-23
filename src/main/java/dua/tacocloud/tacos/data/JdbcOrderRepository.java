@@ -18,7 +18,7 @@ import java.util.List;
 
 @Repository
 public class JdbcOrderRepository implements OrderRepository{
-    private JdbcOperations jdbcOperations;
+    private final JdbcOperations jdbcOperations;
     public JdbcOrderRepository(JdbcOperations jdbcOperations)
     {
         this.jdbcOperations=jdbcOperations;
