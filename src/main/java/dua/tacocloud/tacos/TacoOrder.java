@@ -4,15 +4,20 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@Table("taco_order")
 public class TacoOrder {
     private static final long serialVersionUID = 1L;
 
+    @Id
     private Long id;
 
     @NotBlank(message = "Delivery Name is required")
@@ -30,6 +35,7 @@ public class TacoOrder {
     @NotBlank(message = "Delivery Zip is required")
     private String deliveryZip;
 
+    @Column("ccnumber")
     @CreditCardNumber(message = "Not a valid Credit Card Number")
     private String ccNumber;
 
